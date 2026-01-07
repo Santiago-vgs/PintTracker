@@ -10,8 +10,8 @@ import {
   Alert,
 } from 'react-native';
 import { useFocusEffect } from '@react-navigation/native';
-import * as Haptics from 'expo-haptics';
 import { useTheme } from '../contexts/ThemeContext';
+import * as Haptics from '../utils/haptics';
 import {
   getActiveSession,
   saveActiveSession,
@@ -59,7 +59,7 @@ const LogScreen = () => {
   };
 
   const startNewSession = async () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
     const newSession = {
       id: Date.now().toString(),
       name: sessionName || 'Session',
@@ -77,7 +77,7 @@ const LogScreen = () => {
   const endSession = async () => {
     if (!activeSession) return;
 
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+    await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
 
     const endedSession = {
       ...activeSession,
@@ -107,7 +107,7 @@ const LogScreen = () => {
       return;
     }
 
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
 
     const newDrink = {
       id: Date.now().toString(),
@@ -137,9 +137,9 @@ const LogScreen = () => {
     loadData();
   };
 
-  const quickAddDrink = (name) => {
+  const quickAddDrink = async (name) => {
     setDrinkName(name);
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
 
   const formatDuration = (ms) => {

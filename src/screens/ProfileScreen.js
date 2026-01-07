@@ -9,8 +9,8 @@ import {
   Alert,
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Haptics from 'expo-haptics';
 import { useTheme } from '../contexts/ThemeContext';
+import * as Haptics from '../utils/haptics';
 
 const ProfileScreen = () => {
   const { theme, isDark, toggleTheme } = useTheme();
@@ -27,7 +27,7 @@ const ProfileScreen = () => {
           onPress: async () => {
             try {
               await AsyncStorage.clear();
-              Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+              await Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
               Alert.alert('Success', 'All data has been cleared.');
             } catch (error) {
               Alert.alert('Error', 'Failed to clear data.');
@@ -38,8 +38,8 @@ const ProfileScreen = () => {
     );
   };
 
-  const handleThemeToggle = () => {
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  const handleThemeToggle = async () => {
+    await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     toggleTheme();
   };
 
