@@ -1,62 +1,135 @@
-# PintTracker
+# 🍺 Pint Tracker
 
-A project for tracking pints.
+The fun, effortless way to track your drinks and relive your nights out – like Strava for drinking sessions.
+
+## Features
+
+### Core Functionality
+- **Session-Based Tracking**: Start/end drinking sessions with live running totals
+- **Quick Drink Logging**: Add drinks with name, type, quantity, price, and notes
+- **Smart Quick-Add Bar**: Recently used drinks appear as one-tap chips
+- **Drink Types**: Beer, Wine, Cocktail, Shot, and Other with emoji icons
+
+### Stats & Analytics
+- **Personal Dashboard**: View your stats - total drinks, sessions, weekly/monthly totals
+- **Session History**: Browse all past sessions with detailed drink lists
+- **Yearly Recap**: Spotify Wrapped-style yearly summary with fun stats like:
+  - Total drinks and sessions
+  - Top drink and favorite type
+  - Longest night and biggest session
+  - Busiest month
+  - Total spent
+
+### User Experience
+- **Dark/Light Mode**: Auto-switching theme with manual toggle
+- **Haptic Feedback**: Satisfying vibrations on interactions
+- **Local Storage**: All data stored on your device (no backend needed)
+- **Clean Modern UI**: Card-based design with smooth animations
 
 ## Getting Started
 
-This repository is currently being set up.
+### Prerequisites
+- Node.js installed
+- Expo Go app on your phone (iOS or Android)
 
+### Installation
 
-instructions:
+1. Install dependencies:
+```bash
+npm install
+```
 
-Pint Tracker App Summary (Optimized for Claude Coding Prompt)
-App Name: Pint Tracker
-Tagline: The fun, effortless way to track your drinks and relive your nights out – like Strava for drinking sessions.
-Core Concept
-Pint Tracker is a mobile app that makes logging drinks during nights out (or casual sessions) quick, intuitive, and rewarding. It turns drinking into trackable “sessions” with stats, insights, and a viral Spotify Wrapped-style yearly recap. The long-term vision is a social network where friends share sessions (like Strava activities), but for the current solo development phase, focus entirely on a local-only, polished personal tracker – no auth, no backend, no social features yet.
-Target User
-Social young adults who enjoy nights out with friends and want a lighthearted way to track habits, see patterns, and get fun recaps.
-Current Implemented Foundation
-•  Main logging screen with clean form: Date (auto or selectable), Drink Name (text), Quantity (number), optional Price and Comment.
-•  “Add Drink” button appends to a “Today’s Drinks” (or current session) list, grouped by date.
-•  Smart quick-add bar: Shows recently used drinks as tappable chips; tap one → auto-fills name → prompt for quantity → one-tap add.
-Key Features to Build Next (Minimum for a “Sick” Professional Demo)
-Prioritize speed and visual polish – aim for a premium feel with modern UI (clean cards, subtle animations, dark/light mode, icons).
-1.  Session-Based Tracking
-	•  Replace “Today’s Drinks” with explicit “Sessions”.
-	•  “Start New Session” button (optional session name like “Pub Crawl”). Auto-starts timer.
-	•  Live running totals (e.g., total drinks, total volume in pints/ml, total spent).
-	•  “End Session” → saves and shows summary card.
-2.  Session History & Details
-	•  List of past sessions (date, duration, totals).
-	•  Tap session → detailed view with timestamped drink list.
-3.  Personal Stats Dashboard
-	•  Home screen: Current/active session at top, then weekly/monthly/yearly aggregates (total drinks, average per session, top drinks, etc.).
-	•  Simple visualizations (progress rings, basic charts).
-4.  Yearly Recap (The Wow Feature)
-	•  Dedicated “2026 Recap” screen (generate on-demand or auto at year-end).
-	•  Scrollable vibrant cards: “You had X drinks in Y sessions”, “Top Drink: [Name]”, “Longest Night: Z hours”, “Busiest Month”, “Total Spent”, with fun emojis/icons.
-	•  Make it screenshot-friendly for easy sharing.
-5.  Polish & UX Enhancements
-	•  Drink type selector (icons: Beer, Wine, Cocktail, Shot, etc.) for better categorization.
-	•  Favorites/quick-add improvements.
-	•  Photo attachment per session (optional, for future sharing).
-	•  Onboarding flow, settings (units, theme), export data.
-Navigation Structure
-Bottom tabs:
-•  Home (Dashboard + current session)
-•  Log/Add (main logging screen)
-•  History
-•  Recap
-•  Profile/Settings
-Design Inspiration
-Aim for a clean, modern vibe blending:
-•  Quick logging like Untappd beer check-ins.
-•  Stats dashboards like Strava.
-•  Fun recaps like Spotify Wrapped.
+2. Start the development server:
+```bash
+npm start
+```
 
-Tech Notes
-•  Keep all data local (e.g., Hive, SQLite, or SharedPreferences + JSON).
-•  No networking/social yet – perfect for rapid solo iteration.
-•  Focus on smooth animations, haptics, and responsive layouts to make it feel pro.
-This version will look and feel like a complete, addictive app ready for beta testing or app store previews. Once polished, adding social (friends/feed/sharing) will be the natural next phase.
+3. Scan the QR code with:
+   - **iOS**: Camera app
+   - **Android**: Expo Go app
+
+## Usage
+
+1. **Start a Session**: Tap "Start New Session" on the Log tab
+2. **Add Drinks**: Select drink type, enter name and details, tap "Add Drink"
+3. **Quick Add**: Tap recent drinks for faster logging
+4. **View Stats**: Check Home tab for real-time session stats and overall analytics
+5. **End Session**: Tap "End Session" when done
+6. **View History**: Browse past sessions in the History tab
+7. **Yearly Recap**: Check the Recap tab for your year in review
+
+## Project Structure
+
+```
+PintTracker/
+├── src/
+│   ├── screens/         # Main app screens
+│   │   ├── HomeScreen.js
+│   │   ├── LogScreen.js
+│   │   ├── HistoryScreen.js
+│   │   ├── RecapScreen.js
+│   │   └── ProfileScreen.js
+│   ├── navigation/      # Navigation setup
+│   ├── contexts/        # React contexts (theme)
+│   ├── storage/         # Local storage utilities
+│   └── utils/           # Helper functions
+├── App.js              # Main app entry
+└── package.json
+```
+
+## Tech Stack
+
+- **React Native**: Cross-platform mobile framework
+- **Expo**: Development tools and runtime
+- **React Navigation**: Navigation library
+- **AsyncStorage**: Local data persistence
+- **Expo Haptics**: Touch feedback
+
+## Roadmap
+
+### Phase 1 (Current - Solo MVP)
+- ✅ Session tracking
+- ✅ Drink logging with types
+- ✅ Stats dashboard
+- ✅ History view
+- ✅ Yearly recap
+- ✅ Dark mode
+
+### Phase 2 (Social Features)
+- User authentication
+- Friend connections
+- Activity feed (like Strava)
+- Session sharing
+- Comments and reactions
+- Leaderboards
+
+### Phase 3 (Enhanced Features)
+- Photo attachments per session
+- Venue check-ins
+- Drink recommendations
+- Export data (CSV/PDF)
+- Cloud sync
+- Push notifications
+
+## Development
+
+Run on different platforms:
+
+```bash
+# iOS (requires Mac)
+npm run ios
+
+# Android
+npm run android
+
+# Web
+npm run web
+```
+
+## License
+
+This project is for personal use.
+
+## Version
+
+1.0.0 - Initial Release
