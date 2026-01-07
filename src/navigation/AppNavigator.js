@@ -1,4 +1,5 @@
 import React from 'react';
+import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { useTheme } from '../contexts/ThemeContext';
@@ -15,20 +16,38 @@ const Tab = createBottomTabNavigator();
 const AppNavigator = () => {
   const { theme, isDark } = useTheme();
 
+  const navigationTheme = {
+    dark: isDark,
+    colors: {
+      primary: theme.primary,
+      background: theme.background,
+      card: theme.card,
+      text: theme.text,
+      border: theme.border,
+      notification: theme.primary,
+    },
+    fonts: {
+      regular: {
+        fontFamily: 'System',
+        fontWeight: '400',
+      },
+      medium: {
+        fontFamily: 'System',
+        fontWeight: '500',
+      },
+      bold: {
+        fontFamily: 'System',
+        fontWeight: '700',
+      },
+      heavy: {
+        fontFamily: 'System',
+        fontWeight: '800',
+      },
+    },
+  };
+
   return (
-    <NavigationContainer
-      theme={{
-        dark: isDark,
-        colors: {
-          primary: theme.primary,
-          background: theme.background,
-          card: theme.card,
-          text: theme.text,
-          border: theme.border,
-          notification: theme.primary,
-        },
-      }}
-    >
+    <NavigationContainer theme={navigationTheme}>
       <Tab.Navigator
         screenOptions={{
           tabBarActiveTintColor: theme.primary,
@@ -37,50 +56,42 @@ const AppNavigator = () => {
             backgroundColor: theme.card,
             borderTopColor: theme.border,
           },
-          headerStyle: {
-            backgroundColor: theme.card,
-          },
-          headerTintColor: theme.text,
+          headerShown: false,
         }}
       >
         <Tab.Screen
           name="Home"
           component={HomeScreen}
           options={{
-            tabBarLabel: 'Home',
-            headerTitle: 'Pint Tracker',
+            tabBarLabel: ({ color }) => <Text style={{ color, fontSize: 12 }}>Home</Text>,
           }}
         />
         <Tab.Screen
           name="Log"
           component={LogScreen}
           options={{
-            tabBarLabel: 'Log',
-            headerTitle: 'Log Drinks',
+            tabBarLabel: ({ color }) => <Text style={{ color, fontSize: 12 }}>Log</Text>,
           }}
         />
         <Tab.Screen
           name="History"
           component={HistoryScreen}
           options={{
-            tabBarLabel: 'History',
-            headerTitle: 'Session History',
+            tabBarLabel: ({ color }) => <Text style={{ color, fontSize: 12 }}>History</Text>,
           }}
         />
         <Tab.Screen
           name="Recap"
           component={RecapScreen}
           options={{
-            tabBarLabel: 'Recap',
-            headerTitle: '2026 Recap',
+            tabBarLabel: ({ color }) => <Text style={{ color, fontSize: 12 }}>Recap</Text>,
           }}
         />
         <Tab.Screen
           name="Profile"
           component={ProfileScreen}
           options={{
-            tabBarLabel: 'Settings',
-            headerTitle: 'Settings',
+            tabBarLabel: ({ color }) => <Text style={{ color, fontSize: 12 }}>Settings</Text>,
           }}
         />
       </Tab.Navigator>

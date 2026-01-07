@@ -40,8 +40,7 @@ export const darkTheme = {
 
 export const ThemeProvider = ({ children }) => {
   const systemColorScheme = useColorScheme();
-  const [isDark, setIsDark] = useState(false);
-  const [isReady, setIsReady] = useState(false);
+  const [isDark, setIsDark] = useState(systemColorScheme === 'dark');
 
   useEffect(() => {
     loadThemePreference();
@@ -52,13 +51,9 @@ export const ThemeProvider = ({ children }) => {
       const saved = await AsyncStorage.getItem('@theme_preference');
       if (saved !== null) {
         setIsDark(saved === 'dark');
-      } else if (systemColorScheme) {
-        setIsDark(systemColorScheme === 'dark');
       }
     } catch (error) {
       console.error('Error loading theme:', error);
-    } finally {
-      setIsReady(true);
     }
   };
 
@@ -73,10 +68,6 @@ export const ThemeProvider = ({ children }) => {
   };
 
   const theme = isDark ? darkTheme : lightTheme;
-
-  if (!isReady) {
-    return null;
-  }
 
   return (
     <ThemeContext.Provider value={{ theme, isDark, toggleTheme }}>
